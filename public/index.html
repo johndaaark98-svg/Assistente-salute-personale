@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="it" data-theme="orange">
 <head>
 <meta charset="UTF-8">
@@ -223,6 +223,10 @@ body::after { width: 500px; height: 500px; background: radial-gradient(circle, v
 .meal-desc { font-size: 11.5px; color: var(--text-2); line-height: 1.6; }
 .meal-desc strong { color: var(--text); font-weight: 600; }
 .meal-desc em { color: var(--text-3); font-style: italic; }
+.meal-supps { margin-top: 10px; padding: 10px 12px; background: linear-gradient(90deg, var(--purple-soft) 0%, color-mix(in srgb, var(--purple-soft) 60%, var(--surface)) 100%); border-left: 3px solid var(--purple); border-radius: 10px; font-size: 11.5px; color: var(--text); line-height: 1.6; display: flex; gap: 9px; align-items: flex-start; }
+.meal-supps .ico { font-size: 14px; flex-shrink: 0; padding-top: 1px; }
+.meal-supps strong { color: var(--purple); font-weight: 700; }
+.meal-supps em { color: var(--text-2); font-style: italic; font-weight: 400; }
 .macros { display: flex; flex-direction: column; gap: 3px; align-items: flex-end; flex-shrink: 0; }
 .macro { padding: 2px 8px; border-radius: 100px; font-size: 10px; font-weight: 600; white-space: nowrap; }
 .m-p { background: var(--green-soft); color: var(--green); }
@@ -684,9 +688,10 @@ body::after { width: 500px; height: 500px; background: radial-gradient(circle, v
             </div>
           </div>
 
-          <div class="card card-soft">
-            <div class="card-header"><div class="card-title">Promemoria integratori</div></div>
-            <div id="todaySupplements" style="font-size:12px;color:var(--text-2);line-height:1.8"></div>
+          <div class="card card-soft" style="background:linear-gradient(135deg, var(--purple-soft) 0%, var(--surface-soft) 100%);border:1px solid rgba(142,126,211,0.15)">
+            <div class="card-header" style="margin-bottom:8px"><div class="card-title">💊 Integratori dentro ai pasti</div></div>
+            <div style="font-size:12.5px;color:var(--text-2);line-height:1.6;margin-bottom:12px">Ogni pasto della tua fase ora include gli integratori da prendere in quel momento — quanti, quali, e perché. Niente più liste separate da memorizzare.</div>
+            <button class="btn btn-primary" onclick="goToTodayMeal()" style="width:100%;background:var(--purple);box-shadow:0 4px 12px rgba(142,126,211,0.3)">Vai ai pasti di oggi →</button>
           </div>
         </div>
 
@@ -1173,20 +1178,20 @@ const NUTRITION = {
     label: "Fase 1 · Taglio", badge: "kb-red",
     weeks: [
       { id:"w1", label:"Settimane 1–2", kcal:"2.050–2.100 kcal", meals:[
-        {h:"7:30",n:"Colazione salata",d:"3 uova strapazzate con spinaci saltati + 1 fetta pane integrale (50g) tostato + caffè.<br><em>Alt: 200g yogurt greco 0% + 30g avena + 10g mandorle.</em>",p:28,c:30,g:14,k:355},
+        {h:"7:30",n:"Colazione salata",d:"3 uova strapazzate con spinaci saltati + 1 fetta pane integrale (50g) tostato + caffè.<br><em>Alt: 200g yogurt greco 0% + 30g avena + 10g mandorle.</em>",p:28,c:30,g:14,k:355,s:"<strong>Vitamina D3</strong> 2.000–4.000 UI + <strong>K2</strong> 100mcg <em>(con le uova: serve il grasso per assorbirla)</em>"},
         {h:"10:30",n:"Spuntino opzionale",d:"Solo se hai fame. 1 frutto (mela/pera ~150g) + 15g noci.",p:2,c:20,g:9,k:165},
-        {h:"13:00",n:"Pranzo — casa o ristorante",d:"<strong>Da casa:</strong> 150g pollo/merluzzo + 150g riso integrale cotto + verdure grigliate + 1 cucchiaino olio EVO.<br><strong>Ristorante:</strong> secondo carne/pesce + contorno verdure. No fritti, no salse. Se prendi il primo: pasta al pomodoro, salta il secondo.",p:45,c:55,g:8,k:475},
-        {h:"16:30",n:"Pre-workout / spuntino",d:"Se ti alleni: 200ml latte scremato + 30g whey. Altrimenti: 150g yogurt greco 0% + 5g miele.",p:35,c:12,g:3,k:215},
-        {h:"20:00",n:"Cena — zero amidi",d:"200g pollo/tacchino/pesce bianco/tonno + 250g verdure miste + 1 cucchiaino olio EVO.<br><strong>Zero carboidrati amidacei la sera.</strong>",p:52,c:10,g:7,k:310},
-        {h:"21:30",n:"Pre-nanna",d:"150g ricotta magra o 200ml latte scremato caldo. Protegge dal catabolismo notturno.",p:18,c:6,g:3,k:120}
+        {h:"13:00",n:"Pranzo — casa o ristorante",d:"<strong>Da casa:</strong> 150g pollo/merluzzo + 150g riso integrale cotto + verdure grigliate + 1 cucchiaino olio EVO.<br><strong>Ristorante:</strong> secondo carne/pesce + contorno verdure. No fritti, no salse. Se prendi il primo: pasta al pomodoro, salta il secondo.",p:45,c:55,g:8,k:475,s:"<strong>Omega-3</strong> 1g EPA+DHA (~2 capsule) <em>con il pasto</em>"},
+        {h:"16:30",n:"Pre-workout / spuntino",d:"Se ti alleni: 200ml latte scremato + 30g whey. Altrimenti: 150g yogurt greco 0% + 5g miele.",p:35,c:12,g:3,k:215,s:"Solo nei giorni di allenamento: <strong>Caffeina</strong> 100–200mg <em>(30 min prima, mai dopo le 15)</em> · <strong>Whey</strong> 30g nello shake · <strong>Creatina</strong> 5g post-workout con acqua"},
+        {h:"20:00",n:"Cena — zero amidi",d:"200g pollo/tacchino/pesce bianco/tonno + 250g verdure miste + 1 cucchiaino olio EVO.<br><strong>Zero carboidrati amidacei la sera.</strong>",p:52,c:10,g:7,k:310,s:"<strong>Omega-3</strong> 1–2g EPA+DHA (~2–4 capsule) <em>per chiudere la dose giornaliera di 2–3g</em>"},
+        {h:"21:30",n:"Pre-nanna",d:"150g ricotta magra o 200ml latte scremato caldo. Protegge dal catabolismo notturno.",p:18,c:6,g:3,k:120,s:"<strong>Magnesio glicinato</strong> 300–400mg · <strong>Ashwagandha KSM-66</strong> 300mg <em>(insieme, 30–60 min prima di dormire)</em>"}
       ], tot:"~2.050–2.100 kcal · P 180g · C 133g · G 44g",
         warn:"Aspettati fame la sera: è normale e significa che il deficit funziona. 3L di acqua al giorno. Weekend: massimo 1 pasto libero, non accumulare fritti + dolce + alcol insieme." },
       { id:"w2", label:"Settimane 3–4", kcal:"2.000–2.100 kcal", meals:[
-        {h:"7:30",n:"Proteine mattutine alte",d:"4 albumi + 1 uovo intero con pomodorini + basilico + caffè.<br><em>Alt: 250g yogurt greco 0% + 25g whey + 5 mandorle.</em>",p:35,c:8,g:8,k:245},
-        {h:"13:00",n:"Pranzo — carb ridotti",d:"200g pollo/tonno/salmone + 120g riso integrale cotto + insalata + 1 cucchiaino olio.<br><em>Ristorante: pesce/carne + verdure, ZERO pasta se possibile.</em>",p:48,c:38,g:9,k:425},
-        {h:"16:30",n:"Pre-workout",d:"30g whey in acqua + 1 banana piccola (100g). Senza allenamento: solo lo shake.",p:25,c:22,g:2,k:205},
-        {h:"20:00",n:"Cena + legumi",d:"220g merluzzo/branzino/pollo + 300g verdure + 50g legumi cotti. Zero pasta/riso.",p:58,c:15,g:8,k:365},
-        {h:"21:30",n:"Pre-nanna",d:"200g ricotta magra o cottage cheese. Non saltare mai.",p:22,c:6,g:4,k:145}
+        {h:"7:30",n:"Proteine mattutine alte",d:"4 albumi + 1 uovo intero con pomodorini + basilico + caffè.<br><em>Alt: 250g yogurt greco 0% + 25g whey + 5 mandorle.</em>",p:35,c:8,g:8,k:245,s:"<strong>Vitamina D3</strong> 2.000–4.000 UI + <strong>K2</strong> 100mcg <em>(prendile con l'uovo intero, serve il grasso)</em>"},
+        {h:"13:00",n:"Pranzo — carb ridotti",d:"200g pollo/tonno/salmone + 120g riso integrale cotto + insalata + 1 cucchiaino olio.<br><em>Ristorante: pesce/carne + verdure, ZERO pasta se possibile.</em>",p:48,c:38,g:9,k:425,s:"<strong>Omega-3</strong> 1g EPA+DHA (~2 capsule)"},
+        {h:"16:30",n:"Pre-workout",d:"30g whey in acqua + 1 banana piccola (100g). Senza allenamento: solo lo shake.",p:25,c:22,g:2,k:205,s:"Solo nei giorni di allenamento: <strong>Caffeina</strong> 100–200mg <em>(30 min prima, mai dopo le 15)</em> · <strong>Whey</strong> 30g nello shake · <strong>Creatina</strong> 5g post-workout"},
+        {h:"20:00",n:"Cena + legumi",d:"220g merluzzo/branzino/pollo + 300g verdure + 50g legumi cotti. Zero pasta/riso.",p:58,c:15,g:8,k:365,s:"<strong>Omega-3</strong> 1–2g EPA+DHA <em>(per chiudere a 2–3g giornalieri)</em>"},
+        {h:"21:30",n:"Pre-nanna",d:"200g ricotta magra o cottage cheese. Non saltare mai.",p:22,c:6,g:4,k:145,s:"<strong>Magnesio glicinato</strong> 300–400mg · <strong>Ashwagandha</strong> 300mg <em>(30–60 min prima di dormire)</em>"}
       ], tot:"~2.000–2.100 kcal · P 188g · C 89g · G 31g",
         warn:"I carb scendono. Se le prestazioni crollano, aggiungi 50g riso a pranzo: non è uno sgarro. Pesa ogni lunedì a digiuno, obiettivo 0,6–1 kg/settimana." }
     ]
@@ -1195,16 +1200,16 @@ const NUTRITION = {
     label: "Fase 2 · Recomp", badge: "kb-green",
     weeks: [
       { id:"w1", label:"Settimane 5–6", kcal:"2.020–2.200 kcal", meals:[
-        {h:"7:30",n:"Carb mattutini su",d:"3 uova intere + 80g fiocchi d'avena con acqua o latte scremato + caffè.",p:32,c:54,g:16,k:480},
-        {h:"13:00",n:"Pranzo completo",d:"180g pollo/200g tonno/200g salmone + 180g riso basmati cotto + 200g verdure + 1 cucchiaino olio.",p:50,c:65,g:10,k:555},
-        {h:"17:30",n:"Peri-workout",d:"<strong>Pre (30–45 min):</strong> 30g whey + 1 banana.<br><strong>Post (entro 45 min):</strong> 30g whey + 30g riso soffiato / 1 frutto.",p:52,c:60,g:3,k:475},
-        {h:"20:00",n:"Cena leggera sui carb",d:"200g pesce/carne bianca + 300g verdure + 1 cucchiaino olio. + 50g quinoa se allenamento intenso.",p:45,c:20,g:8,k:335},
-        {h:"22:00",n:"Pre-nanna",d:"200g ricotta magra + 5g burro di arachidi naturale.",p:24,c:6,g:6,k:175}
+        {h:"7:30",n:"Carb mattutini su",d:"3 uova intere + 80g fiocchi d'avena con acqua o latte scremato + caffè.",p:32,c:54,g:16,k:480,s:"<strong>Vitamina D3</strong> 2.000–4.000 UI + <strong>K2</strong> 100mcg <em>(con le uova intere)</em>"},
+        {h:"13:00",n:"Pranzo completo",d:"180g pollo/200g tonno/200g salmone + 180g riso basmati cotto + 200g verdure + 1 cucchiaino olio.",p:50,c:65,g:10,k:555,s:"<strong>Omega-3</strong> 1g EPA+DHA <em>(se il pranzo è salmone, salta — già coperto)</em>"},
+        {h:"17:30",n:"Peri-workout",d:"<strong>Pre (30–45 min):</strong> 30g whey + 1 banana.<br><strong>Post (entro 45 min):</strong> 30g whey + 30g riso soffiato / 1 frutto.",p:52,c:60,g:3,k:475,s:"<strong>Caffeina</strong> 100–200mg <em>30 min prima (no dopo le 15)</em> · <strong>Whey</strong> 30g pre + 30g post · <strong>Creatina</strong> 5g post-workout"},
+        {h:"20:00",n:"Cena leggera sui carb",d:"200g pesce/carne bianca + 300g verdure + 1 cucchiaino olio. + 50g quinoa se allenamento intenso.",p:45,c:20,g:8,k:335,s:"<strong>Omega-3</strong> 1–2g EPA+DHA <em>(per chiudere a 2–3g giornalieri)</em>"},
+        {h:"22:00",n:"Pre-nanna",d:"200g ricotta magra + 5g burro di arachidi naturale.",p:24,c:6,g:6,k:175,s:"<strong>Magnesio glicinato</strong> 300–400mg · <strong>Ashwagandha</strong> 300mg <em>(prima di dormire)</em>"}
       ], tot:"~2.020–2.200 kcal · P 203g · C 205g · G 43g", warn:"" },
       { id:"w2", label:"Settimane 7–8", kcal:"2.200–2.350 kcal", meals:[
-        {h:"7:30",n:"+ frutta secca",d:"Struttura sett. 5–6 + 15g mandorle o noci. Grasso sano: sazietà e testosterone.",p:33,c:54,g:25,k:565},
-        {h:"13:00",n:"Salmone 3x/settimana",d:"200g salmone (omega-3) + 150g riso integrale + verdure. Altri giorni: pollo/tonno.",p:48,c:58,g:15,k:570},
-        {h:"20:00",n:"Carne rossa 2x/settimana",d:"200g manzo/vitello magro: ferro e zinco per testosterone e recupero. Con verdure abbondanti.",p:50,c:15,g:10,k:355}
+        {h:"7:30",n:"+ frutta secca",d:"Struttura sett. 5–6 + 15g mandorle o noci. Grasso sano: sazietà e testosterone.",p:33,c:54,g:25,k:565,s:"<strong>Vitamina D3</strong> 2.000–4.000 UI + <strong>K2</strong> 100mcg"},
+        {h:"13:00",n:"Salmone 3x/settimana",d:"200g salmone (omega-3) + 150g riso integrale + verdure. Altri giorni: pollo/tonno.",p:48,c:58,g:15,k:570,s:"<strong>Omega-3</strong>: 1g se mangi salmone (già coperto in parte), 2g negli altri giorni"},
+        {h:"20:00",n:"Carne rossa 2x/settimana",d:"200g manzo/vitello magro: ferro e zinco per testosterone e recupero. Con verdure abbondanti.",p:50,c:15,g:10,k:355,s:"<strong>Magnesio glicinato</strong> 300–400mg · <strong>Ashwagandha</strong> 300mg <em>(60–90 min dopo cena, prima di dormire)</em>. Caffeina e creatina come al peri-workout se ti alleni."}
       ], tot:"~2.200–2.350 kcal · P 195g", warn:"" },
       { id:"w3", label:"Sett. 9 — Refeed", kcal:"2.800–3.000 kcal", meals:[], warn:"",
         custom:"<div class='warn'><strong>Refeed strategico (4–5 giorni)</strong><br><br>Dopo 5–6 settimane di deficit la leptina scende e il metabolismo rallenta. Un refeed la rilancia, ridà energia muscolare e ricarica psicologicamente. <strong>Non è uno sgarro: è fisiologia.</strong><br><br><strong>Carb:</strong> 350–400g/die · <strong>Proteine:</strong> 180–200g · <strong>Grassi:</strong> 30–35g · <strong>Calorie:</strong> 2.800–3.000 per 4 giorni.<br><br>Colazione → avena 100g + frutta + yogurt greco<br>Pranzo → riso 200g + pollo + verdure<br>Cena → pasta integrale 80g + carne bianca<br>Post-workout → shake + banana + riso soffiato 40g</div>" }
@@ -1214,16 +1219,16 @@ const NUTRITION = {
     label: "Fase 3 · Lean out", badge: "kb-blue",
     weeks: [
       { id:"w1", label:"Giorno allenamento", kcal:"1.990–2.050 kcal", meals:[
-        {h:"7:30",n:"Avena + whey",d:"100g fiocchi d'avena con latte scremato + 30g whey + 1 cucchiaio miele + caffè.",p:40,c:75,g:8,k:540},
-        {h:"13:00",n:"Pranzo completo",d:"200g pollo/220g tonno + 200g riso basmati cotto + 200g verdure + 1 cucchiaino olio.",p:55,c:65,g:9,k:570},
-        {h:"17:30",n:"Peri-workout",d:"<strong>Pre (15 min):</strong> 30g whey + 30g riso soffiato.<br><strong>Post:</strong> 30g whey + 1 banana + 20g riso soffiato.",p:55,c:75,g:2,k:540},
-        {h:"20:00",n:"Cena zero amidi",d:"200g pesce/carne bianca + 300g verdure + 1 cucchiaino olio. + 100g legumi se hai fame.",p:50,c:18,g:7,k:340}
+        {h:"7:30",n:"Avena + whey",d:"100g fiocchi d'avena con latte scremato + 30g whey + 1 cucchiaio miele + caffè.",p:40,c:75,g:8,k:540,s:"<strong>Vitamina D3</strong> 2.000–4.000 UI + <strong>K2</strong> 100mcg <em>(con il latte o aggiungi 10g mandorle al pasto per i grassi)</em>"},
+        {h:"13:00",n:"Pranzo completo",d:"200g pollo/220g tonno + 200g riso basmati cotto + 200g verdure + 1 cucchiaino olio.",p:55,c:65,g:9,k:570,s:"<strong>Omega-3</strong> 1g EPA+DHA"},
+        {h:"17:30",n:"Peri-workout",d:"<strong>Pre (15 min):</strong> 30g whey + 30g riso soffiato.<br><strong>Post:</strong> 30g whey + 1 banana + 20g riso soffiato.",p:55,c:75,g:2,k:540,s:"<strong>Caffeina</strong> 100–200mg <em>30 min pre (no dopo le 15)</em> · <strong>Whey</strong> 30g + 30g · <strong>Creatina</strong> 5g post-workout"},
+        {h:"20:00",n:"Cena zero amidi",d:"200g pesce/carne bianca + 300g verdure + 1 cucchiaino olio. + 100g legumi se hai fame.",p:50,c:18,g:7,k:340,s:"<strong>Omega-3</strong> 1–2g EPA+DHA <em>(chiude i 2–3g giornalieri)</em> · 60–90 min dopo cena: <strong>Magnesio</strong> 300–400mg + <strong>Ashwagandha</strong> 300mg"}
       ], tot:"~1.990–2.050 kcal · P 200g · C 233g", warn:"" },
       { id:"w2", label:"Giorno riposo", kcal:"1.435–1.700 kcal", meals:[
-        {h:"7:30",n:"Uova — zero avena",d:"4 uova intere + 2 albumi + verdure + caffè. I grassi delle uova saziano di più.",p:40,c:4,g:24,k:390},
-        {h:"13:00",n:"Salmone + legumi",d:"200g salmone o tonno + insalata + 100g legumi cotti + olio EVO. Carb al minimo.",p:52,c:18,g:18,k:445},
-        {h:"16:30",n:"Spuntino",d:"30g whey in acqua + 10 mandorle. Zero zuccheri.",p:28,c:4,g:8,k:200},
-        {h:"20:00",n:"Cena quasi zero-carb",d:"250g pollo/tacchino + 400g verdure + olio EVO + limone. + 150g ricotta dessert.",p:65,c:12,g:10,k:400}
+        {h:"7:30",n:"Uova — zero avena",d:"4 uova intere + 2 albumi + verdure + caffè. I grassi delle uova saziano di più.",p:40,c:4,g:24,k:390,s:"<strong>Vitamina D3</strong> 2.000–4.000 UI + <strong>K2</strong> 100mcg <em>(con i tuorli, perfetto)</em>"},
+        {h:"13:00",n:"Salmone + legumi",d:"200g salmone o tonno + insalata + 100g legumi cotti + olio EVO. Carb al minimo.",p:52,c:18,g:18,k:445,s:"<strong>Omega-3</strong>: 1g se è giorno tonno (2 capsule), salta se è salmone (già coperto)"},
+        {h:"16:30",n:"Spuntino",d:"30g whey in acqua + 10 mandorle. Zero zuccheri.",p:28,c:4,g:8,k:200,s:"Niente caffeina oggi (giorno di riposo). <strong>Creatina</strong> 5g anche oggi <em>(va presa ogni giorno, anche senza allenamento)</em>"},
+        {h:"20:00",n:"Cena quasi zero-carb",d:"250g pollo/tacchino + 400g verdure + olio EVO + limone. + 150g ricotta dessert.",p:65,c:12,g:10,k:400,s:"<strong>Omega-3</strong> 1–2g EPA+DHA · 60–90 min dopo cena: <strong>Magnesio</strong> 300–400mg + <strong>Ashwagandha</strong> 300mg"}
       ], tot:"~1.435–1.700 kcal · P 185g · C 38g", warn:"Deficit aggressivo nel giorno di riposo: è intenzionale. Non ti alleni, non servono carb. Il corpo brucia i grassi accumulati." },
       { id:"w3", label:"Peak finale", kcal:"ciclico", meals:[], warn:"",
         custom:"<div class='warn'><strong>Peak finale (ultimi ~8 giorni)</strong><br><br>Obiettivo: ridurre la ritenzione idrica e massimizzare la definizione.<br><br><strong>Giorni 1–5 (water cut):</strong><br>— Elimina il sale aggiunto · 4L acqua/giorno<br>— Carb a 80–100g (verdure + legumi + riso post-workout)<br>— Proteine a 210g/die · Omega-3 a 3g EPA+DHA<br><br><strong>Giorni 6–8 (carb-loading):</strong><br>— 250–300g carb (riso, patate dolci, avena) per 3 giorni<br>— I muscoli si riempiono di glicogeno → più pieni e definiti<br>— Acqua a 2,5L<br><br><strong>Risultato realistico:</strong> −6/9 kg grasso, +1/2 kg muscolo, definizione visibile a tronco e braccia.</div>" }
@@ -1603,7 +1608,8 @@ function selectCalDay(y,m,d){
 
 
 function renderTodaySupplements(){
-  document.getElementById('todaySupplements').innerHTML = SUPPLEMENTS_TODAY.map(s=>'<div>'+s+'</div>').join('');
+  const el = document.getElementById('todaySupplements');
+  if(el) el.innerHTML = SUPPLEMENTS_TODAY.map(s=>'<div>'+s+'</div>').join('');
 }
 
 /* ============ MORNING CHECK ============ */
@@ -1649,8 +1655,9 @@ async function loadBriefing(force){
 
 /* ============ RENDER NUTRITION ============ */
 function mealHTML(m){
+  const sup = m.s ? `<div class="meal-supps"><span class="ico">💊</span><span><strong>Integratori:</strong> ${m.s}</span></div>` : '';
   return `<div class="meal"><div class="meal-time"><span class="mt-hour">${m.h}</span></div>
-    <div class="meal-content"><div class="meal-name">${m.n}</div><div class="meal-desc">${m.d}</div></div>
+    <div class="meal-content"><div class="meal-name">${m.n}</div><div class="meal-desc">${m.d}</div>${sup}</div>
     <div class="macros"><span class="macro m-p">P ${m.p}g</span><span class="macro m-c">C ${m.c}g</span><span class="macro m-f">G ${m.g}g</span><span class="macro m-k">${m.k}</span></div></div>`;
 }
 function renderPhase(key){
