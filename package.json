@@ -1,0 +1,7 @@
+{
+  "name": "coach-app",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Coach personale — nutrizione, allenamento, AI coach, live workout",
+  "engines": { "node": ">=18.x" }
+}
