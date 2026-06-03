@@ -118,11 +118,16 @@ body::after { width: 500px; height: 500px; background: radial-gradient(circle, v
 .sidebar::-webkit-scrollbar { width: 0; }
 
 @media (max-width: 768px) {
-  .sidebar { position: fixed; inset: 0 auto 0 0; width: 80%; max-width: 280px; background: var(--bg); z-index: 100; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); box-shadow: var(--shadow-lg); padding: 20px; }
+  .sidebar { position: fixed; inset: 0 auto 0 0; width: 86%; max-width: 320px; background: var(--bg); z-index: 100; transform: translateX(-100%); transition: transform 0.3s cubic-bezier(0.4,0,0.2,1); box-shadow: var(--shadow-lg); padding: 24px 16px; }
   .sidebar.open { transform: translateX(0); }
   .sidebar-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 99; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
   .sidebar-overlay.on { opacity: 1; pointer-events: auto; }
-  .menu-btn { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; background: var(--surface); border: 1px solid var(--border); border-radius: 9px; cursor: pointer; font-size: 16px; }
+  .menu-btn { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; background: var(--accent-soft); border: 1px solid rgba(var(--accent-rgb),0.2); border-radius: 12px; cursor: pointer; font-size: 22px; color: var(--accent); font-weight: 700; }
+  .sidebar .nav-item { padding: 16px 14px; font-size: 16px; gap: 14px; margin-bottom: 4px; border-radius: 14px; }
+  .sidebar .nav-icon { width: 32px; height: 32px; font-size: 15px; border-radius: 10px; }
+  .sidebar .nav-sub { font-size: 12px; }
+  .sidebar .nav-group-title { font-size: 12px; padding: 0 14px 10px; }
+  .sidebar .nav-group { margin-bottom: 22px; }
 }
 @media (min-width: 769px) { .menu-btn { display: none; } }
 
@@ -242,6 +247,39 @@ body::after { width: 500px; height: 500px; background: radial-gradient(circle, v
 .integ-when { font-size: 10.5px; color: var(--text-3); line-height: 1.5; padding-top: 6px; border-top: 1px solid var(--border); }
 .integ-pill { display: inline-block; padding: 2px 7px; border-radius: 100px; font-size: 9px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
 .pill-purple { background: var(--purple-soft); color: var(--purple); }
+
+/* KNOWLEDGE expandables */
+.know-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 0; margin-bottom: 8px; overflow: hidden; }
+.know-card[open] { background: var(--surface-soft); }
+.know-card summary { padding: 14px 16px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 10px; user-select: none; font-size: 13.5px; font-weight: 600; }
+.know-card summary::-webkit-details-marker { display: none; }
+.know-card summary::after { content: '⌃'; margin-left: auto; font-size: 14px; color: var(--text-3); transform: rotate(180deg); transition: transform 0.25s; }
+.know-card[open] summary::after { transform: rotate(0deg); }
+.know-card summary:hover { background: var(--surface-soft); }
+.know-icon { width: 26px; height: 26px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+.know-body { padding: 0 16px 16px; font-size: 12.5px; line-height: 1.7; color: var(--text-2); }
+.know-body strong { color: var(--text); font-weight: 600; }
+.know-body em { color: var(--accent); font-style: normal; font-weight: 600; }
+.know-body h5 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text); margin: 12px 0 4px; }
+.know-body h5:first-child { margin-top: 0; }
+.know-body ul { margin: 0 0 4px; padding-left: 18px; }
+.know-body li { margin-bottom: 2px; }
+.know-body .danger-inline { color: var(--red); font-weight: 600; }
+.know-section-title { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 22px; margin: 24px 0 10px; letter-spacing: -0.01em; }
+.know-section-title:first-of-type { margin-top: 18px; }
+
+.cal-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 11.5px; }
+.cal-table th, .cal-table td { padding: 9px 8px; text-align: left; border-bottom: 1px solid var(--border); }
+.cal-table th { font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-3); font-weight: 700; background: var(--surface-soft); }
+.cal-table td:first-child { font-weight: 600; color: var(--text); }
+.cal-table .ok { color: var(--green); font-weight: 600; }
+.cal-table .pause { color: var(--amber); font-weight: 600; }
+.cal-table .stop { color: var(--red); font-weight: 600; }
+
+.alarm-grid { display: grid; grid-template-columns: 1fr; gap: 6px; margin-top: 8px; }
+.alarm-row { display: grid; grid-template-columns: 24px 1fr; gap: 10px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; font-size: 12px; line-height: 1.55; align-items: start; }
+.alarm-row .ico { color: var(--red); font-weight: 700; font-size: 14px; }
+.alarm-row strong { color: var(--text); }
 
 .rule { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
 .rule:last-child { border-bottom: none; }
@@ -449,42 +487,45 @@ body::after { width: 500px; height: 500px; background: radial-gradient(circle, v
 .theme-swatch { width: 28px; height: 28px; border-radius: 9px; flex-shrink: 0; }
 .theme-opt-name { font-size: 13px; font-weight: 600; }
 
-/* CHAT */
-.chat-bar { background: var(--surface); border-radius: 22px; border: 1px solid var(--border); box-shadow: var(--shadow-lg); overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.4,0,0.2,1); flex-shrink: 0; max-height: 52px; }
-.chat-bar.expanded { max-height: 480px; }
-@media (max-width: 600px) { .chat-bar.expanded { max-height: 380px; } }
-.chat-toggle { display: flex; align-items: center; gap: 10px; padding: 12px 18px; cursor: pointer; user-select: none; }
-.chat-toggle:hover { background: var(--surface-soft); }
-.chat-bubble-icon { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 70%, white) 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 13px; flex-shrink: 0; }
-.chat-toggle-text { flex: 1; font-size: 12.5px; color: var(--text-2); }
-.chat-toggle-text strong { color: var(--text); font-weight: 600; }
-.chat-arrow { font-size: 15px; color: var(--text-3); transition: transform 0.3s ease; }
-.chat-bar.expanded .chat-arrow { transform: rotate(180deg); }
-.chat-content { display: flex; flex-direction: column; overflow: hidden; border-top: 1px solid var(--border); flex: 1; min-height: 0; }
-.chat-messages { flex: 1; overflow-y: auto; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; min-height: 180px; -webkit-overflow-scrolling: touch; }
-.msg { display: flex; gap: 9px; align-items: flex-start; animation: msgIn 0.3s ease; }
+/* CHAT FAB + FULLSCREEN */
+.chat-fab { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom)); width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 80%, white) 100%); border: none; cursor: pointer; box-shadow: 0 8px 24px rgba(var(--accent-rgb),0.4), 0 2px 6px rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; color: white; font-size: 26px; z-index: 700; transition: transform 0.2s; }
+.chat-fab:active { transform: scale(0.92); }
+.chat-fab.hidden { display: none; }
+.chat-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 850; display: none; flex-direction: column; padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); }
+.chat-overlay.on { display: flex; animation: fadeIn 0.25s ease; }
+.chat-header { display: flex; align-items: center; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.chat-header-icon { width: 36px; height: 36px; border-radius: 11px; background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 70%, white) 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; }
+.chat-header-text { flex: 1; }
+.chat-header-title { font-family: 'Instrument Serif', serif; font-style: italic; font-size: 20px; line-height: 1.1; }
+.chat-header-sub { font-size: 11.5px; color: var(--text-3); margin-top: 2px; }
+.chat-close { width: 38px; height: 38px; border-radius: 11px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 18px; color: var(--text-2); display: flex; align-items: center; justify-content: center; }
+.chat-close:active { transform: scale(0.94); }
+.chat-content { display: flex; flex-direction: column; overflow: hidden; flex: 1; min-height: 0; }
+.chat-messages { flex: 1; overflow-y: auto; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; -webkit-overflow-scrolling: touch; }
+.msg { display: flex; gap: 10px; align-items: flex-start; animation: msgIn 0.3s ease; }
 @keyframes msgIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .msg.user { flex-direction: row-reverse; }
-.msg-avatar { width: 26px; height: 26px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 10.5px; font-weight: 600; }
+.msg-avatar { width: 30px; height: 30px; border-radius: 9px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
 .msg.coach .msg-avatar { background: linear-gradient(135deg, var(--accent) 0%, color-mix(in srgb, var(--accent) 70%, white) 100%); color: white; }
 .msg.user .msg-avatar { background: var(--surface-soft); color: var(--text-2); border: 1px solid var(--border); }
-.msg-bubble { max-width: 78%; padding: 9px 13px; border-radius: 14px; font-size: 12.5px; line-height: 1.6; word-wrap: break-word; }
+.msg-bubble { max-width: 80%; padding: 11px 15px; border-radius: 16px; font-size: 14px; line-height: 1.55; word-wrap: break-word; }
 .msg.coach .msg-bubble { background: var(--surface-soft); color: var(--text); border: 1px solid var(--border); border-top-left-radius: 4px; }
 .msg.user .msg-bubble { background: var(--accent); color: white; border-top-right-radius: 4px; }
 .msg-bubble strong { font-weight: 700; }
 .msg-bubble em { font-style: italic; }
-.typing { display: flex; gap: 3px; align-items: center; padding: 4px 0; }
-.typing span { width: 5px; height: 5px; border-radius: 50%; background: var(--text-3); animation: blink 1.2s infinite; }
+.typing { display: flex; gap: 4px; align-items: center; padding: 4px 0; }
+.typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--text-3); animation: blink 1.2s infinite; }
 .typing span:nth-child(2) { animation-delay: .2s; }
 .typing span:nth-child(3) { animation-delay: .4s; }
 @keyframes blink { 0%,100% { opacity: 0.3; transform: translateY(0); } 50% { opacity: 1; transform: translateY(-3px); } }
-.quick-prompts { display: flex; gap: 5px; flex-wrap: wrap; padding: 8px 18px; border-top: 1px solid var(--border); background: var(--surface-soft); max-height: 70px; overflow-y: auto; }
-.qp { font-size: 10.5px; padding: 5px 11px; border-radius: 100px; background: var(--surface); border: 1px solid var(--border); color: var(--text-2); cursor: pointer; user-select: none; white-space: nowrap; }
+.quick-prompts { display: flex; gap: 6px; flex-wrap: nowrap; padding: 10px 20px; border-top: 1px solid var(--border); background: var(--surface-soft); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.quick-prompts::-webkit-scrollbar { display: none; }
+.qp { font-size: 12px; padding: 7px 13px; border-radius: 100px; background: var(--surface); border: 1px solid var(--border); color: var(--text-2); cursor: pointer; user-select: none; white-space: nowrap; flex-shrink: 0; }
 .qp:hover, .qp:active { border-color: var(--accent); color: var(--accent); }
-.chat-input-row { display: flex; gap: 8px; padding: 12px 14px; align-items: flex-end; border-top: 1px solid var(--border); }
-#chatInput { flex: 1; background: var(--surface-soft); border: 1px solid var(--border); border-radius: 100px; padding: 9px 16px; font-family: inherit; font-size: 12.5px; color: var(--text); outline: none; resize: none; max-height: 80px; line-height: 1.5; }
+.chat-input-row { display: flex; gap: 10px; padding: 14px 16px; align-items: flex-end; border-top: 1px solid var(--border); background: var(--surface); }
+#chatInput { flex: 1; background: var(--surface-soft); border: 1px solid var(--border); border-radius: 22px; padding: 11px 18px; font-family: inherit; font-size: 15px; color: var(--text); outline: none; resize: none; max-height: 120px; line-height: 1.4; }
 #chatInput:focus { border-color: var(--accent); background: var(--surface); }
-#sendBtn { background: var(--accent); color: white; border: none; border-radius: 50%; width: 34px; height: 34px; font-size: 14px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+#sendBtn { background: var(--accent); color: white; border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 18px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(var(--accent-rgb),0.3); }
 #sendBtn:active { transform: scale(0.92); }
 #sendBtn:disabled { opacity: 0.4; }
 
@@ -560,7 +601,7 @@ body::after { width: 500px; height: 500px; background: radial-gradient(circle, v
       </div>
       <div class="nav-item" onclick="showPanel('integratori', this)">
         <div class="nav-icon ic-integ">◇</div>
-        <div class="nav-label"><span>Integratori</span><span class="nav-sub">11 elementi</span></div>
+        <div class="nav-label"><span>Integratori</span><span class="nav-sub">7 elementi</span></div>
       </div>
       <div class="nav-item" onclick="showPanel('regole', this)">
         <div class="nav-icon ic-rules">★</div>
@@ -674,29 +715,278 @@ body::after { width: 500px; height: 500px; background: radial-gradient(circle, v
 
         <!-- INTEGRATORI -->
         <div id="panel-integratori" class="panel">
-          <div class="panel-header"><h1 class="panel-title">Stack <em>integratori</em></h1><p class="panel-subtitle">11 integratori, solo evidence-based. Niente di esotico, niente di pericoloso. Le aggiunte per sonno, stress e glicemia sono evidenziate.</p></div>
+          <div class="panel-header"><h1 class="panel-title">Stack <em>integratori</em></h1><p class="panel-subtitle">7 integratori essenziali, solo evidence-based. Niente di esotico, niente di pericoloso. Coprono ricomposizione, recupero, infiammazione, sonno, stress e immunità.</p></div>
           <div class="card card-soft">
-            <div class="card-header"><div class="card-title">Base — ricomposizione</div></div>
+            <div class="card-header"><div class="card-title">Il tuo stack</div></div>
             <div class="integ-grid">
               <div class="integ"><div class="integ-name">Whey protein (isolato)</div><div class="integ-dose">60–90g/die in 2–3 shake da 30g</div><div class="integ-when">Pre/post workout + pre-nanna se serve</div></div>
               <div class="integ"><div class="integ-name">Creatina monoidrato</div><div class="integ-dose">5g/die ogni giorno, sempre</div><div class="integ-when">Post-workout con acqua. Forza +5–15%, recupero migliore.</div></div>
               <div class="integ"><div class="integ-name">Omega-3 (EPA+DHA)</div><div class="integ-dose">2–3g EPA+DHA/die (≈4–6 capsule)</div><div class="integ-when">Con i pasti. Infiammazione, composizione corporea, schiena.</div></div>
               <div class="integ"><div class="integ-name">Vitamina D3 + K2</div><div class="integ-dose">2.000–4.000 UI D3 + 100mcg K2/die</div><div class="integ-when">Mattina con pasto grasso. Testosterone, immunità, metabolismo.</div></div>
               <div class="integ"><div class="integ-name">Magnesio glicinato</div><div class="integ-dose">300–400mg/die</div><div class="integ-when">Sera prima di dormire. Sonno, cortisolo. Non usare ossido.</div></div>
-              <div class="integ"><div class="integ-name">Zinco</div><div class="integ-dose">15–25mg/die</div><div class="integ-when">Sera (non con calcio). Testosterone, recupero, immunità.</div></div>
+              <div class="integ"><div class="integ-name">Ashwagandha (KSM-66)</div><div class="integ-dose">300mg/die, estratto standardizzato</div><div class="integ-when">Sera con pasto. Cortisolo, sonno, stress. Cicla 8 sett. on / 2–4 off. Non con problemi tiroidei.</div></div>
               <div class="integ"><div class="integ-name">Caffeina pre-workout</div><div class="integ-dose">100–200mg, 30 min prima</div><div class="integ-when">Solo nei giorni di allenamento. Mai dopo le 15:00.</div></div>
-              <div class="integ"><div class="integ-name">BCAA / EAA — opzionale</div><div class="integ-dose">10g EAA durante allenamento</div><div class="integ-when">Solo se alleni a digiuno o proteine sotto target.</div></div>
             </div>
           </div>
+
+          <div class="know-section-title">Approfondimento per ogni integratore</div>
+          <p style="font-size:12px;color:var(--text-2);line-height:1.6;margin-bottom:12px">Tocca su un integratore per espandere dosaggi, modulazione, interazioni e sicurezza.</p>
+
+          <details class="know-card">
+            <summary><span class="know-icon" style="background:var(--green-soft);color:var(--green)">🥛</span>Whey protein (isolato)</summary>
+            <div class="know-body">
+              <h5>Quanto prenderne</h5>
+              60–90g/die divisi in 2–3 shake da 30g. La regola pratica: <em>punta a 1,8–2,2g di proteine totali per kg di peso</em>. Quello che non copri col cibo, lo copri con la whey. Per te (~83kg) significa ~165g totali: se col cibo arrivi a 100g, la whey copre i 65g restanti.
+              <h5>Modulazione nel tempo</h5>
+              <ul>
+                <li><strong>Fase 1 (taglio):</strong> 90g/die — la whey sazia, costa poco, protegge il muscolo nel deficit</li>
+                <li><strong>Fase 2 (recomp):</strong> 60g/die — mangi più carne/pesce, riduci</li>
+                <li><strong>Fase 3 (lean out):</strong> 80g/die — riprende importanza nel deficit ciclico</li>
+              </ul>
+              <h5>Interazioni</h5>
+              Nessuna problematica. Si abbina bene con creatina nello shake post-WO. <strong>Non</strong> mischiare con omega-3 nello stesso shake (i grassi rallentano l'assorbimento delle proteine; prendili a 30 min di distanza).
+              <h5>Sicurezza</h5>
+              Se hai reni sani, dosi fino a 2,5g/kg/die sono sicure (studi a lungo termine). <span class="danger-inline">Se hai problemi renali noti</span>, parla col medico prima. Se hai problemi col lattosio: <em>isolato</em> ne contiene tracce, <em>idrolizzato</em> zero.
+            </div>
+          </details>
+
+          <details class="know-card">
+            <summary><span class="know-icon" style="background:var(--accent-soft);color:var(--accent)">⚡</span>Creatina monoidrato</summary>
+            <div class="know-body">
+              <h5>Quanto prenderne</h5>
+              <strong>5g al giorno, sempre, per sempre.</strong> Niente fase di carico (vecchia scuola, inutile). La creatina si "satura" nel muscolo in 3–4 settimane di assunzione costante.
+              <h5>Quando funziona davvero</h5>
+              Aspettati i benefici reali (forza +5–15%, pump migliore, recupero) <em>dopo 3–4 settimane</em>. Non valutarla prima.
+              <h5>Modulazione nel tempo</h5>
+              Non si cicla. Si prende ogni giorno, anche nei giorni di riposo. Se la dimentichi 1–2 giorni non perdi nulla, ma evita di stoppare per più di una settimana.
+              <h5>Interazioni</h5>
+              <ul>
+                <li><strong>Con carboidrati post-WO:</strong> assorbimento +20% (insulina veicola la creatina nel muscolo)</li>
+                <li><strong>Con caffeina &gt;400mg:</strong> alcuni studi vecchi suggerivano un'inibizione, ma la ricerca moderna la esclude. Le dosi di caffeina che prendi tu (100–200mg) sono sicure</li>
+                <li><strong>Acqua:</strong> bevi almeno 3L/die. La creatina trattiene acqua intramuscolare (1–2 kg, normale, non è grasso)</li>
+              </ul>
+              <h5>Sicurezza</h5>
+              È l'integratore più studiato in assoluto — oltre 30 anni di letteratura, profilo di sicurezza eccellente. <span class="danger-inline">Mito da sfatare:</span> "fa male ai reni" — falso per persone con reni sani. Se hai una funzionalità renale compromessa, sì, parla col medico.
+            </div>
+          </details>
+
+          <details class="know-card">
+            <summary><span class="know-icon" style="background:var(--blue-soft);color:var(--blue)">🐟</span>Omega-3 (EPA+DHA)</summary>
+            <div class="know-body">
+              <h5>Quanto prenderne</h5>
+              <strong>2–3g di EPA+DHA combinati al giorno.</strong> Attenzione: i grammi sull'etichetta si riferiscono spesso all'<em>olio di pesce totale</em>, non agli omega-3 attivi. Cerca sempre i valori di EPA e DHA separati e sommali. Esempio: 1 capsula da "1000mg olio di pesce" può contenere solo 300mg di EPA+DHA — te ne servirebbero 8 per arrivare a 2,4g.
+              <h5>Modulazione nel tempo</h5>
+              <ul>
+                <li><strong>Estate, mangi pesce grasso 2–3x/settimana:</strong> 1,5–2g/die bastano</li>
+                <li><strong>Inverno, poco pesce:</strong> 2,5–3g/die</li>
+                <li><strong>Carichi infiammatori (post-infortunio, palestra intensa, mal di schiena):</strong> 3g/die per 4–6 settimane</li>
+              </ul>
+              <h5>Interazioni</h5>
+              <ul>
+                <li><span class="danger-inline">Anticoagulanti</span> (Cardioaspirina, Warfarin, Eliquis): omega-3 fluidificano il sangue. Parla col medico prima di combinarli</li>
+                <li>Con pasto grasso: assorbimento ottimale. Non a digiuno</li>
+                <li>Lontano da whey: i grassi rallentano l'assorbimento delle proteine</li>
+              </ul>
+              <h5>Conservazione (importante)</h5>
+              Gli omega-3 irrancidiscono velocemente. <strong>Conserva in frigo dopo apertura.</strong> Se il rutto sa di pesce marcio o se schiacciando una capsula senti odore acre, sono ossidati: buttali. Gli omega-3 ossidati fanno più male che bene.
+              <h5>Sicurezza</h5>
+              Sotto i 3g/die nessun problema. Sopra i 5g/die possono fluidificare troppo il sangue (lividi facili, sanguinamento dal naso). Non superare 3g a meno che non sia prescritto.
+            </div>
+          </details>
+
+          <details class="know-card">
+            <summary><span class="know-icon" style="background:var(--amber-soft);color:var(--amber)">☀️</span>Vitamina D3 + K2</summary>
+            <div class="know-body">
+              <h5>Quanto prenderne</h5>
+              <ul>
+                <li><strong>D3:</strong> 2.000 UI/die di base. 4.000 UI in inverno o se i tuoi valori ematici sono bassi</li>
+                <li><strong>K2 (forma MK-7):</strong> 100–200mcg/die. Indirizza il calcio alle ossa invece che alle arterie</li>
+              </ul>
+              <h5>Test ematico (importante)</h5>
+              <strong>Misura il 25(OH)D nel sangue 1–2 volte all'anno.</strong> È l'unico modo di dosare correttamente.
+              <ul>
+                <li>Sotto 20 ng/mL: carenza grave, serve protocollo medico</li>
+                <li>20–30 ng/mL: insufficienza, 4.000 UI/die</li>
+                <li>30–50 ng/mL: ok, 2.000 UI/die mantenimento</li>
+                <li>50–80 ng/mL: ottimale, 1.000–2.000 UI/die</li>
+                <li>Sopra 100 ng/mL: eccesso, ferma temporaneamente</li>
+              </ul>
+              <h5>Modulazione stagionale</h5>
+              <ul>
+                <li><strong>Estate</strong> (sole regolare 20+ min/die senza creme): puoi dimezzare a 1.000 UI/die</li>
+                <li><strong>Autunno/Inverno</strong>: 4.000 UI/die</li>
+                <li><strong>Primavera</strong>: 2.000 UI/die</li>
+              </ul>
+              <h5>Interazioni e assorbimento</h5>
+              <ul>
+                <li><strong>Pasto grasso obbligatorio</strong> (vitamina liposolubile). Senza grassi assorbi una frazione. Esempi: uova, avocado, salmone, olio EVO, frutta secca</li>
+                <li>Lontano da fibre e calcio (riducono assorbimento)</li>
+                <li>K2 e omega-3 vanno bene insieme (entrambi liposolubili, stesso pasto)</li>
+              </ul>
+              <h5>Sicurezza</h5>
+              Tossicità rara sotto 10.000 UI/die ma esiste. <span class="danger-inline">Senza esame del sangue, non superare 4.000 UI/die.</span> Segnali di eccesso: nausea, sete, urinazione frequente, calcificazioni — fermati e fai analisi.
+            </div>
+          </details>
+
+          <details class="know-card">
+            <summary><span class="know-icon" style="background:var(--purple-soft);color:var(--purple)">🌙</span>Magnesio glicinato</summary>
+            <div class="know-body">
+              <h5>Quanto prenderne</h5>
+              <strong>300–400mg di magnesio elementare/die.</strong> Attento: l'etichetta può riportare "magnesio bisglicinato 1000mg" — quello è il peso del composto totale, non del magnesio attivo. Cerca sempre la dicitura "magnesio elementare" o "elemental magnesium".
+              <h5>Perché glicinato</h5>
+              È la forma con la migliore biodisponibilità per sonno e ansia. Le altre forme:
+              <ul>
+                <li><strong>Ossido:</strong> economico ma assorbito al 4% — quasi inutile</li>
+                <li><strong>Citrato:</strong> ok per costipazione, meno per sonno</li>
+                <li><strong>Treonato:</strong> attraversa la barriera ematoencefalica, buono per cognitivo</li>
+                <li><strong>Glicinato:</strong> il tuo — meglio per sonno/recupero/cortisolo</li>
+              </ul>
+              <h5>Modulazione nel tempo</h5>
+              <ul>
+                <li><strong>Estate</strong> (sudi molto in palestra): 400mg</li>
+                <li><strong>Periodi di stress alto / sonno cattivo:</strong> 400mg</li>
+                <li><strong>Mantenimento:</strong> 300mg</li>
+              </ul>
+              <h5>Interazioni</h5>
+              <ul>
+                <li><span class="danger-inline">Lontano da calcio, zinco, ferro</span> (almeno 2 ore di distanza — competono per gli stessi trasportatori)</li>
+                <li>Lontano da caffè/tè (i tannini riducono l'assorbimento)</li>
+                <li>Va bene la sera con l'ashwagandha — si potenziano sul cortisolo</li>
+              </ul>
+              <h5>Sicurezza</h5>
+              Troppo magnesio = <strong>diarrea</strong> (segnale fisico chiaro). Se succede, riduci di 100mg. Il glicinato è quello che dà meno problemi gastrointestinali. <span class="danger-inline">Insufficienza renale</span>: il magnesio si accumula, parla col medico.
+            </div>
+          </details>
+
+          <details class="know-card">
+            <summary><span class="know-icon" style="background:var(--red-soft);color:var(--red)">🌿</span>Ashwagandha (KSM-66)</summary>
+            <div class="know-body">
+              <h5>Quanto prenderne</h5>
+              <strong>300mg/die di KSM-66 standardizzato</strong> (estratto della radice, almeno 5% di withanolidi). Le polveri generiche di "ashwagandha" senza standardizzazione sono spesso inefficaci.
+              <h5>Ciclizzazione OBBLIGATORIA</h5>
+              A differenza degli altri, l'ashwagandha <em>non va presa per sempre</em>. Il corpo si adatta e perde efficacia.
+              <ul>
+                <li><strong>8–12 settimane on</strong> (assunzione quotidiana)</li>
+                <li><strong>2–4 settimane off</strong> (pausa totale)</li>
+                <li>Poi ricomincia il ciclo</li>
+              </ul>
+              <h5>Quando NON prenderla</h5>
+              <ul>
+                <li><span class="danger-inline">Problemi tiroidei</span> (specie ipertiroidismo): tende ad attivare la tiroide</li>
+                <li><span class="danger-inline">Malattie autoimmuni</span> (Hashimoto, lupus, AR): può stimolare il sistema immunitario in modo controproducente</li>
+                <li><span class="danger-inline">Se prendi farmaci tiroidei, sedativi, ansiolitici, immunosoppressori</span>: parla col medico</li>
+                <li>Gravidanza: vietata</li>
+              </ul>
+              <h5>Test ematico consigliato</h5>
+              Se la prendi a cicli regolari, <strong>controlla TSH, FT3, FT4 ogni 6–12 mesi.</strong> Specialmente i primi mesi.
+              <h5>Sicurezza</h5>
+              Generalmente ben tollerata. Effetti collaterali possibili: nausea, sonnolenza diurna (se eccessiva), raramente alterazioni epatiche (casi rari documentati). Se senti palpitazioni, perdita di peso non spiegata, ansia paradossa: <span class="danger-inline">stop immediato e analisi tiroidee</span>.
+            </div>
+          </details>
+
+          <details class="know-card">
+            <summary><span class="know-icon" style="background:#3a2614;color:#d4a574">☕</span>Caffeina pre-workout</summary>
+            <div class="know-body">
+              <h5>Quanto prenderne</h5>
+              <strong>3–6 mg/kg di peso corporeo</strong> = per te (~83kg) la finestra utile è 250–500mg. <em>Ma:</em> punta a 100–200mg. Funziona uguale e impatti meno sonno e cuore.
+              <h5>Ciclizzazione OBBLIGATORIA</h5>
+              <ul>
+                <li><strong>2–3 settimane on</strong> (caffeina pre-WO nei giorni di allenamento)</li>
+                <li><strong>1 settimana off</strong> (zero caffeina, anche dal caffè se ne bevi tanto)</li>
+                <li>Senza ciclizzazione perde efficacia in ~2 mesi e diventa solo un "evitare la stanchezza" invece di una vera spinta</li>
+              </ul>
+              <h5>Regola assoluta: mai dopo le 15:00</h5>
+              Emivita 5–7 ore. A 50 anni l'emivita aumenta (anche fino a 9 ore). <strong>Anche se "non senti nulla" la sera</strong>, il sonno profondo cala misurabilmente per chi prende caffeina dopo le 14–15. Per te che dormi 5–6h è inaccettabile. <em>Se ti alleni dopo le 15, salta la caffeina quel giorno.</em>
+              <h5>Sospensione</h5>
+              Se la prendi tutti i giorni, fermarti causa <strong>cefalea da astinenza</strong> per 2–3 giorni, irritabilità, stanchezza. Riduci gradualmente del 50% al giorno per evitarla.
+              <h5>Interazioni</h5>
+              <ul>
+                <li><span class="danger-inline">Riduce assorbimento ferro</span>: distanza dal pasto con ferro/integratore (1 ora)</li>
+                <li>Aumenta cortisolo: <span class="danger-inline">mai vicina all'ashwagandha</span> (annulla il beneficio sul cortisolo)</li>
+                <li>Con creatina: ok, le interazioni vecchie sono state smentite</li>
+                <li>Con magnesio: ok ma a distanza</li>
+              </ul>
+              <h5>Sicurezza</h5>
+              <ul>
+                <li>Limite acuto: 400mg in un colpo</li>
+                <li>Limite giornaliero: 400mg totali (conta anche caffè, tè, cioccolato)</li>
+                <li><span class="danger-inline">Ipertensione, aritmie, ansia clinica</span>: parla col medico</li>
+              </ul>
+            </div>
+          </details>
+
+          <div class="know-section-title">Interazioni e tempi di assunzione</div>
           <div class="card">
-            <div class="card-header"><div class="card-title">Aggiunte — sonno · stress · glicemia</div><span class="integ-pill pill-purple">Nuovi</span></div>
-            <div class="integ-grid">
-              <div class="integ is-new"><div class="integ-name">Ashwagandha (KSM-66)</div><div class="integ-dose">300mg/die, estratto standardizzato</div><div class="integ-when">Sera con pasto. Cortisolo, sonno, stress. Cicla 8 sett. on / 2–4 off. Non con problemi tiroidei.</div></div>
-              <div class="integ is-new"><div class="integ-name">Melatonina</div><div class="integ-dose">0,5mg — non salire: meno è meglio</div><div class="integ-when">30 min prima di dormire. Regola il ritmo circadiano. Supporto, non sostituto delle abitudini.</div></div>
-              <div class="integ is-new"><div class="integ-name">Berberina</div><div class="integ-dose">500mg × 2 con colazione e pranzo</div><div class="integ-when">Sensibilità insulinica e glicemia post-prandiale. Inizia con 1×/die per testare. Interagisce con CYP3A4.</div></div>
+            <div style="font-size:12.5px;line-height:1.75;color:var(--text-2)">
+              <p><strong>La regola d'oro:</strong> alcuni nutrienti competono per gli stessi trasportatori intestinali. Distanziarli aumenta l'assorbimento di entrambi.</p>
+              <h5 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin:14px 0 6px">Schema giornaliero ottimale</h5>
+              <ul style="padding-left:18px;margin:0">
+                <li><strong>07:30 colazione</strong> (con grassi): D3+K2 + omega-3 (parte)</li>
+                <li><strong>13:00 pranzo:</strong> omega-3 (parte)</li>
+                <li><strong>17:00 pre-workout</strong> (30 min prima): caffeina 100–200mg</li>
+                <li><strong>18:30 post-workout:</strong> creatina 5g + whey</li>
+                <li><strong>21:30–22:00 sera</strong> (lontano dalla cena): magnesio + ashwagandha</li>
+              </ul>
+              <h5 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text);margin:14px 0 6px">Cosa NON mettere insieme</h5>
+              <ul style="padding-left:18px;margin:0">
+                <li><strong>Magnesio + minerali della cena</strong> (ferro, zinco, calcio): aspetta 2 ore</li>
+                <li><strong>Magnesio + caffè</strong>: i tannini riducono l'assorbimento</li>
+                <li><strong>Caffeina + ashwagandha</strong>: la caffeina alza il cortisolo, l'ashwagandha lo abbassa — si annullano</li>
+                <li><strong>Whey + omega-3</strong> stesso pasto: i grassi rallentano l'assorbimento proteico</li>
+                <li><strong>D3 a digiuno</strong>: liposolubile, serve un pasto con grassi</li>
+              </ul>
             </div>
           </div>
-          <div class="warn"><strong>NON prendere:</strong> fat burner termogenici (rischio cardiaco), testosterone booster da banco (marketing), HMB (evidenza debole), CLA (effetto minimo).<br><br><strong>Sui farmaci:</strong> a 27 anni, sano, il rischio supera il beneficio. Se in futuro dovessi valutarlo: esami del sangue completi + supervisione medica, mai in autonomia.</div>
+
+          <div class="know-section-title">Calendario di ciclizzazione</div>
+          <div class="card">
+            <table class="cal-table">
+              <thead><tr><th>Integratore</th><th>Frequenza</th><th>Note stagionali</th></tr></thead>
+              <tbody>
+                <tr><td>Whey</td><td class="ok">Ogni giorno</td><td>Dose +30g in deficit calorico</td></tr>
+                <tr><td>Creatina</td><td class="ok">Ogni giorno, sempre</td><td>Mai pause &gt; 1 settimana</td></tr>
+                <tr><td>Omega-3</td><td class="ok">Ogni giorno</td><td>2g estate / 3g inverno</td></tr>
+                <tr><td>D3 + K2</td><td class="ok">Ogni giorno</td><td><span class="pause">1.000 UI estate</span> / 4.000 UI inverno</td></tr>
+                <tr><td>Magnesio</td><td class="ok">Ogni giorno</td><td>+100mg in estate (sudore)</td></tr>
+                <tr><td>Ashwagandha</td><td class="pause">8–12 sett on / 2–4 off</td><td>Stop se sintomi tiroidei</td></tr>
+                <tr><td>Caffeina</td><td class="pause">2–3 sett on / 1 off</td><td>Mai dopo le 15:00</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="know-section-title">Esami del sangue consigliati</div>
+          <div class="card">
+            <div style="font-size:12.5px;line-height:1.7;color:var(--text-2)">
+              <p>Fai questi controlli per dosare gli integratori in modo intelligente e accorgerti per tempo se qualcosa non va. Costo totale ~80–150€ una volta all'anno, e <em>vali molto di più di 150€</em>.</p>
+              <table class="cal-table" style="margin-top:10px">
+                <thead><tr><th>Esame</th><th>Frequenza</th><th>Perché</th></tr></thead>
+                <tbody>
+                  <tr><td>25(OH)D</td><td>1–2 volte/anno</td><td>Dosaggio vitamina D</td></tr>
+                  <tr><td>TSH, FT3, FT4</td><td>1 volta/anno</td><td>Tiroide (specie con ashwagandha)</td></tr>
+                  <tr><td>Emocromo completo + ferritina</td><td>1 volta/anno</td><td>Anemia, infiammazione</td></tr>
+                  <tr><td>Profilo lipidico (col, HDL, LDL, TG)</td><td>1 volta/anno</td><td>Cuore, metabolismo</td></tr>
+                  <tr><td>Glicemia + HbA1c</td><td>1 volta/anno</td><td>Sensibilità insulinica</td></tr>
+                  <tr><td>Transaminasi (AST, ALT)</td><td>1 volta/anno</td><td>Salute epatica</td></tr>
+                  <tr><td>Testosterone tot. e libero</td><td>1 volta/anno</td><td>Uomo, sportivo</td></tr>
+                  <tr><td>Creatinina + eGFR</td><td>1 volta/anno</td><td>Funzionalità renale (creatina, whey)</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="know-section-title">Segnali di allarme — quando fermarsi</div>
+          <div class="alarm-grid">
+            <div class="alarm-row"><span class="ico">⚠</span><div><strong>Diarrea persistente</strong> → troppo magnesio. Riduci di 100mg/die. Se non passa in 3 giorni, stop completo</div></div>
+            <div class="alarm-row"><span class="ico">⚠</span><div><strong>Cefalea cronica</strong> → astinenza da caffeina (se hai stoppato bruscamente) o eccesso (se superi 400mg/die). Riduci gradualmente</div></div>
+            <div class="alarm-row"><span class="ico">⚠</span><div><strong>Insonnia peggiorata</strong> → caffeina dopo le 14:00 o dose troppo alta. Sposta tutta la caffeina al mattino</div></div>
+            <div class="alarm-row"><span class="ico">⚠</span><div><strong>Palpitazioni, ansia, dimagrimento rapido</strong> → possibile iper-tiroidismo da ashwagandha. <span class="danger-inline">Stop immediato</span> e analisi TSH/FT3/FT4 entro 1 settimana</div></div>
+            <div class="alarm-row"><span class="ico">⚠</span><div><strong>Lividi facili, sanguinamenti dal naso</strong> → omega-3 troppo alti (&gt;3g) o ossidati. Riduci a 2g, controlla data di scadenza</div></div>
+            <div class="alarm-row"><span class="ico">⚠</span><div><strong>Nausea persistente, sete eccessiva, urinazione frequente</strong> → possibile eccesso di D3. Stop e analisi 25(OH)D</div></div>
+            <div class="alarm-row"><span class="ico">⚠</span><div><strong>Dolore lombare, sangue nelle urine</strong> → possibili calcoli renali da creatina con poca acqua. Bevi 3,5L/die, analisi creatinina/eGFR</div></div>
+            <div class="alarm-row"><span class="ico">⚠</span><div><strong>Capsule omega-3 con odore acre / rutto di pesce marcio</strong> → ossidate. <span class="danger-inline">Butta il flacone</span>, sono più dannose che utili</div></div>
+          </div>
+
+          <div class="warn"><strong>NON prendere:</strong> fat burner termogenici (rischio cardiaco), testosterone booster da banco (marketing), HMB (evidenza debole), CLA (effetto minimo).<br><br><strong>Sui farmaci:</strong> a 27 anni, sano, il rischio supera il beneficio. Se in futuro dovessi valutarlo: esami del sangue completi + supervisione medica, mai in autonomia.<br><br><strong>Importante:</strong> queste informazioni sono educative, non sostituiscono un medico. Se prendi farmaci o hai patologie, mostra il tuo stack al medico prima di iniziare.</div>
         </div>
 
         <!-- REGOLE -->
@@ -784,35 +1074,44 @@ body::after { width: 500px; height: 500px; background: radial-gradient(circle, v
       </div>
     </div>
 
-    <!-- CHAT -->
-    <div class="chat-bar" id="chatBar">
-      <div class="chat-toggle" onclick="toggleChat()">
-        <div class="chat-bubble-icon">✦</div>
-        <div class="chat-toggle-text"><strong>Chiedi al coach</strong> · pasti, sostituti, esercizi, dubbi</div>
-        <div class="chat-arrow">⌃</div>
-      </div>
-      <div class="chat-content">
-        <div class="chat-messages" id="chatMessages">
-          <div class="msg coach"><div class="msg-avatar">C</div><div class="msg-bubble">Ciao Luca! Conosco tutto il tuo piano: nutrizione, allenamento, integratori, regole. Chiedimi quello che vuoi: un sostituto per un alimento o un esercizio, dubbi su un pasto, come gestire un giorno fuori programma.</div></div>
-        </div>
-        <div class="quick-prompts" id="quickPrompts">
-          <div class="qp" onclick="sendQuick(this.textContent)">Cosa mangio oggi?</div>
-          <div class="qp" onclick="sendQuick(this.textContent)">Sostituto del pollo</div>
-          <div class="qp" onclick="sendQuick(this.textContent)">Ho saltato il pranzo</div>
-          <div class="qp" onclick="sendQuick(this.textContent)">Mi fa male la spalla</div>
-          <div class="qp" onclick="sendQuick(this.textContent)">Quando prendo gli integratori?</div>
-        </div>
-        <div class="chat-input-row">
-          <textarea id="chatInput" rows="1" placeholder="Scrivi una domanda..."></textarea>
-          <button id="sendBtn" onclick="sendMessage()">→</button>
-        </div>
-      </div>
+    <!-- CHAT (moved outside main as overlay) -->
+  </div>
+</div>
+
+<!-- CHAT FAB -->
+<button class="chat-fab" id="chatFab" onclick="openChat()" aria-label="Apri chat coach">✦</button>
+
+<!-- CHAT OVERLAY (fullscreen) -->
+<div class="chat-overlay" id="chatOverlay">
+  <div class="chat-header">
+    <div class="chat-header-icon">✦</div>
+    <div class="chat-header-text">
+      <div class="chat-header-title">Coach</div>
+      <div class="chat-header-sub">pasti · esercizi · sostituti · dubbi</div>
+    </div>
+    <button class="chat-close" onclick="closeChat()" aria-label="Chiudi chat">✕</button>
+  </div>
+  <div class="chat-content">
+    <div class="chat-messages" id="chatMessages">
+      <div class="msg coach"><div class="msg-avatar">C</div><div class="msg-bubble">Ciao Luca! Conosco tutto il tuo piano: nutrizione, allenamento, integratori, regole. Chiedimi quello che vuoi: un sostituto per un alimento o un esercizio, dubbi su un pasto, come gestire un giorno fuori programma.</div></div>
+    </div>
+    <div class="quick-prompts" id="quickPrompts">
+      <div class="qp" onclick="sendQuick(this.textContent)">Cosa mangio oggi?</div>
+      <div class="qp" onclick="sendQuick(this.textContent)">Sostituto del pollo</div>
+      <div class="qp" onclick="sendQuick(this.textContent)">Ho saltato il pranzo</div>
+      <div class="qp" onclick="sendQuick(this.textContent)">Mi fa male la spalla</div>
+      <div class="qp" onclick="sendQuick(this.textContent)">Quando prendo gli integratori?</div>
+    </div>
+    <div class="chat-input-row">
+      <textarea id="chatInput" rows="1" placeholder="Scrivi una domanda..."></textarea>
+      <button id="sendBtn" onclick="sendMessage()">→</button>
     </div>
   </div>
 </div>
 
+
 <!-- REST TIMER -->
-<div class="rest-timer" id="restTimer"style="display:none">
+<div class="rest-timer" id="restTimer">
   <div class="rest-ring">
     <svg width="48" height="48"><circle cx="24" cy="24" r="20" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="4"/><circle id="restRingProgress" cx="24" cy="24" r="20" fill="none" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="0"/></svg>
     <div class="rest-ring-time" id="restRingTime">90</div>
@@ -951,10 +1250,10 @@ const SHOPPING = {
 };
 
 const SUPPLEMENTS_TODAY = [
-  "🌅 <strong>Mattina:</strong> Vitamina D3+K2 (con colazione) · Berberina 500mg",
-  "💪 <strong>Pre-workout:</strong> Caffeina 100–200mg (no dopo le 15) · Creatina 5g",
-  "🍽 <strong>Con i pasti:</strong> Omega-3 2–3g · Whey 60–90g totali nella giornata · Berberina 500mg (pranzo)",
-  "🌙 <strong>Sera:</strong> Magnesio glicinato 300–400mg · Zinco 15–25mg · Ashwagandha 300mg · Melatonina 0,5mg"
+  "🌅 <strong>Mattina (colazione con grassi):</strong> Vitamina D3 2.000–4.000 UI + K2 100mcg",
+  "💪 <strong>Pre-workout (30 min prima):</strong> Caffeina 100–200mg (mai dopo le 15) · poi Creatina 5g post-workout",
+  "🍽 <strong>Con i pasti:</strong> Omega-3 2–3g EPA+DHA · Whey 60–90g totali nella giornata",
+  "🌙 <strong>Sera, prima di dormire:</strong> Magnesio glicinato 300–400mg · Ashwagandha 300mg (con pasto)"
 ];
 
 // WORKOUTS: 4 days, exercises with execution/errors/tips + YouTube query
@@ -1582,12 +1881,14 @@ async function startFocusMode(){
   if(!focusExercises.length) return;
   focusIdx = 0;
   document.getElementById('focusMode').classList.add('on');
+  document.getElementById('chatFab').classList.add('hidden');
   startSessionTimer();
   renderFocus();
   try { if('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen'); } catch(e){}
 }
 function exitFocusMode(){
   document.getElementById('focusMode').classList.remove('on');
+  if(!chatExpanded) document.getElementById('chatFab').classList.remove('hidden');
   if(wakeLock){ try{ wakeLock.release(); }catch(e){} wakeLock=null; }
   // sync focus inputs back into main tracker
   openWorkout(currentWorkoutKey);
@@ -1641,7 +1942,7 @@ function focusNext(){
 
 /* ============ SUBSTITUTE EXERCISE ============ */
 function substituteExercise(name){
-  if(!document.getElementById('chatBar').classList.contains('expanded')) toggleChat();
+  if(!chatExpanded) openChat();
   const q = `Non posso fare "${name}" oggi (macchina occupata o attrezzo mancante). Dammi 2 esercizi sostitutivi che allenano gli stessi muscoli, compatibili con la mia schiena e il tendine. Sii breve.`;
   document.getElementById('chatInput').value = q;
   sendMessage();
@@ -1728,7 +2029,26 @@ Mar Lower+Core: leg press (no squat), affondi, leg extension, leg curl, hip thru
 Gio Pull+Core: lat machine (mai dietro nuca), pulley basso, rematore manubrio, curl Scott, curl martello, reverse fly, plank.
 Sab Braccia+Core: curl EZ, curl alternato, concentration curl, dip assistite, push-down corda, estensione sopra testa, plank, russian twist, bird dog.
 
-INTEGRATORI: Whey 60-90g; Creatina 5g; Omega-3 2-3g; D3 2000-4000UI+K2; Magnesio glicinato 300-400mg sera; Zinco 15-25mg sera; Caffeina 100-200mg pre-WO (no dopo 15); Ashwagandha KSM-66 300mg sera; Melatonina 0,5mg; Berberina 500mg×2 pasti. NON: fat burner, test booster, HMB, CLA.
+INTEGRATORI (7 essenziali, il suo stack reale, con knowledge approfondita):
+- Whey isolato 60-90g/die in 2-3 shake da 30g (target proteine totali 1,8-2,2g/kg). +30g in deficit, -30g in mantenimento. Sicuro con reni sani.
+- Creatina monoidrato 5g/die sempre, post-WO con acqua. NIENTE fase di carico. Funziona dopo 3-4 sett. Trattiene 1-2 kg di acqua intramuscolare (non è grasso). Mito reni smentito. Bere 3L+ acqua/die.
+- Omega-3 2-3g EPA+DHA/die (NON grammi totali olio di pesce, leggi etichetta EPA+DHA). 1,5g estate / 3g inverno. Pasto grasso obbligatorio. Lontano da whey. Conservare in frigo dopo apertura, ossidano. Attenzione anticoagulanti.
+- Vitamina D3 2000-4000 UI + K2 100-200mcg/die. Mattina con pasto grasso. Dose modulata su esame 25(OH)D (target 40-60 ng/mL). Estate 1000 UI, inverno 4000. Sopra 10000 UI tossicità.
+- Magnesio glicinato 300-400mg di magnesio ELEMENTARE (non peso composto). Sera prima di dormire. +100mg in estate (sudore). Lontano da Ca/Zn/Fe/caffè di almeno 2h. Diarrea = troppo, ridurre.
+- Ashwagandha KSM-66 300mg sera con pasto. CICLIZZAZIONE OBBLIGATORIA: 8-12 sett on / 2-4 off. NO in caso di: problemi tiroidei, autoimmunità, gravidanza. Stop se palpitazioni/ansia/dimagrimento improvviso (segni iperT). Controllo TSH/FT3/FT4 ogni 6-12 mesi.
+- Caffeina 100-200mg 30 min pre-WO (3-6 mg/kg). MAI dopo le 15:00 (emivita 5-7h, danneggia sonno profondo anche senza sintomi). CICLIZZAZIONE: 2-3 sett on / 1 off altrimenti perde efficacia. Riduce assorbimento ferro. NON vicina ad ashwagandha (annullano cortisolo). Limite acuto 400mg.
+
+INTERAZIONI CHIAVE: Magnesio lontano da minerali e caffè. Caffeina mai con ashwagandha. D3+K2+omega-3 stesso pasto grasso ok. Whey lontano da grassi. Creatina ok con tutto.
+
+CICLIZZAZIONE: solo ashwagandha (8-12 on / 2-4 off) e caffeina (2-3 on / 1 off) si ciclano. Gli altri 5 sempre.
+
+ESAMI DEL SANGUE: 25(OH)D 1-2x/anno, TSH/FT3/FT4 1x/anno, emocromo+ferritina, lipidico, glicemia+HbA1c, transaminasi, testosterone tot+libero, creatinina+eGFR, tutti 1x/anno.
+
+SEGNALI ALLARME: diarrea = troppo magnesio; palpitazioni/ansia = stop ashwagandha; lividi facili = troppo omega-3; cefalea = caffeina (eccesso o astinenza); insonnia = caffeina troppo tardi.
+
+NON consigliare zinco, BCAA/EAA, melatonina, berberina o altri integratori se Luca non li chiede esplicitamente. NON consigliare mai: fat burner, test booster, HMB, CLA.
+
+Per domande cliniche complesse o farmaci, raccomanda visita medica.
 
 REGOLE: Acqua 3-4L; Sonno a 7-8h (critico, con 5h piano rende -40%); Alcol zero; pesare cibo prime 2 sett; pesata lunedì a digiuno.
 
@@ -1736,7 +2056,9 @@ Rispondi in italiano, diretto e specifico, basato sul piano sopra. Conciso. Per 
 
 let isLoading=false;
 let chatExpanded=false;
-function toggleChat(){ chatExpanded=!chatExpanded; document.getElementById('chatBar').classList.toggle('expanded',chatExpanded); if(chatExpanded) setTimeout(()=>document.getElementById('chatInput').focus(),400); }
+function openChat(){ chatExpanded=true; document.getElementById('chatOverlay').classList.add('on'); document.getElementById('chatFab').classList.add('hidden'); setTimeout(()=>document.getElementById('chatInput').focus(),300); }
+function closeChat(){ chatExpanded=false; document.getElementById('chatOverlay').classList.remove('on'); document.getElementById('chatFab').classList.remove('hidden'); }
+function toggleChat(){ if(chatExpanded) closeChat(); else openChat(); }
 function fmt(t){ return t.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>').replace(/\n/g,'<br>'); }
 async function sendMessage(){
   if(isLoading) return;
